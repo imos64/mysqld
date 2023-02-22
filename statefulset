@@ -40,29 +40,11 @@ spec:
           - name: MYSQL_ROOT_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: mysql-root-pass
-                key: password
-          - name: MYSQL_DATABASE
-            valueFrom:
-              secretKeyRef:
-                name: mysql-db-url
-                key: database
-          - name: MYSQL_USER
-            valueFrom:
-              secretKeyRef:
-                name: mysql-user-pass
-                key: username
-          - name: MYSQL_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: mysql-user-pass
-                key: password
+                key: ROOT_PASSWORD
+                name: mysecret
           volumeMounts:
-          - name: mysql-pv
-            mountPath: /var/lib/mysql
-          ports:
-          - containerPort: 3306
-            name: mysql         
+          - name: data
+            mountPath: /var/lib/mysql     
   volumeClaimTemplates:
     - metadata:
         name: data
